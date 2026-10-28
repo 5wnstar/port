@@ -44,6 +44,7 @@ const projects = [
     detail: 'Building safer software and web applications',
     color: 'project-peach',
     visual: 'application',
+    topics: ['Secure development', 'Authentication', 'Threat modeling'],
   },
   {
     number: '02',
@@ -52,6 +53,7 @@ const projects = [
     detail: 'Protecting systems, networks, and services',
     color: 'project-green',
     visual: 'infrastructure',
+    topics: ['Cloud security', 'Hardening', 'Access control'],
   },
   {
     number: '03',
@@ -60,6 +62,7 @@ const projects = [
     detail: 'Exploring security and sharing what I learn',
     color: 'project-lilac',
     visual: 'learning',
+    topics: ['Hands-on labs', 'Research', 'Documentation'],
   },
 ];
 
@@ -127,29 +130,35 @@ function PostReader({ post, onClose }) {
 }
 
 function ProjectVisual({ visual }) {
-  if (visual === 'application') {
-    return (
-      <div className="visual-goodkind">
-        <span className="goodkind-sun" />
-        <span className="goodkind-word">application<br />security</span>
-        <span className="goodkind-caption">SECURE BY DESIGN</span>
-      </div>
-    );
-  }
-  if (visual === 'infrastructure') {
-    return (
-      <div className="visual-common">
-        <span className="common-flower">✳</span>
-        <span className="common-word">infrastructure<br />security</span>
-        <span className="common-caption">Protect the foundation.</span>
-      </div>
-    );
-  }
   return (
-    <div className="visual-sunday">
-      <span className="sunday-shape" />
-      <span className="sunday-word">learn.<br />practice.<br />share.</span>
-      <span className="sunday-caption">A continuous practice.</span>
+    <span className={`focus-glyph focus-glyph-${visual}`} aria-hidden="true">
+      {visual === 'application' ? '{ }' : visual === 'infrastructure' ? '⌘' : '↗'}
+    </span>
+  );
+}
+
+function TerminalPanel() {
+  return (
+    <div className="terminal-panel" aria-label="Cybersecurity interests terminal-style illustration">
+      <div className="terminal-topbar">
+        <div className="terminal-lights"><i /><i /><i /></div>
+        <span>toheeb@security: ~</span>
+        <span className="terminal-menu">···</span>
+      </div>
+      <div className="terminal-content">
+        <p className="terminal-line"><span className="terminal-prompt">➜</span> whoami</p>
+        <p className="terminal-output">Toheeb Adisa</p>
+        <p className="terminal-line"><span className="terminal-prompt">➜</span> cat interests.txt</p>
+        <div className="terminal-output terminal-list">
+          <span><i>01</i> Application security</span>
+          <span><i>02</i> Infrastructure security</span>
+          <span><i>03</i> Continuous learning</span>
+        </div>
+        <p className="terminal-line terminal-last"><span className="terminal-prompt">➜</span> <span className="terminal-cursor" /></p>
+      </div>
+      <div className="terminal-footer"><span><i /> OPEN TO LEARNING</span><span>SECURITY · CURIOSITY · CARE</span></div>
+      <span className="terminal-deco terminal-deco-one">0x01</span>
+      <span className="terminal-deco terminal-deco-two">SECURE BY DESIGN</span>
     </div>
   );
 }
@@ -307,7 +316,7 @@ function App() {
   return (
     <>
       <header className="site-header">
-        <a className="wordmark" href="#home" onClick={closeMenu}>ta<span>.</span></a>
+        <a className="wordmark" href="#home" onClick={closeMenu}><span className="prompt-mark">&gt;</span> toheeb<span className="wordmark-dot">_</span></a>
         <button
           className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
           type="button"
@@ -319,68 +328,60 @@ function App() {
           <span /><span /><span />
         </button>
         <nav id="primary-navigation" className={`main-nav${menuOpen ? ' nav-open' : ''}`}>
-          <a href="#work" onClick={closeMenu}>Work</a>
-          <a href="#about" onClick={closeMenu}>About</a>
-          <a href="#journal" onClick={closeMenu}>Journal</a>
-          <a className="nav-contact" href="#contact" onClick={closeMenu}>Let’s talk <ArrowIcon diagonal /></a>
+          <a href="#work" onClick={closeMenu}><span>01</span> Focus</a>
+          <a href="#about" onClick={closeMenu}><span>02</span> About</a>
+          <a href="#journal" onClick={closeMenu}><span>03</span> Journal</a>
+          <a className="nav-contact" href="#contact" onClick={closeMenu}>Get in touch <ArrowIcon diagonal /></a>
         </nav>
       </header>
 
       <main>
         <section className="hero section-wrap" id="home">
           <div className="hero-copy">
-            <p className="eyebrow"><span className="availability-dot" /> CYBERSECURITY ENTHUSIAST</p>
-            <h1>Curious about security.<br />Focused on a <em>safer</em><br />digital world.</h1>
-            <p className="hero-description">I’m Toheeb Adisa. I’m interested in cybersecurity, especially application security and infrastructure security, and I’m building my knowledge one step at a time.</p>
+            <p className="eyebrow"><span className="availability-dot" /> CYBERSECURITY ENTHUSIAST <span className="eyebrow-divider">/</span> APPLICATION & INFRASTRUCTURE SECURITY</p>
+            <h1>Securing what<br />we <em>build</em> and<br />what we <em>run.</em></h1>
+            <p className="hero-description">I’m Toheeb Adisa — curious about how digital systems work, where they can be strengthened, and how to make security part of the process.</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="#work">Explore my interests <ArrowIcon /></a>
-              <a className="text-link" href="#about">About me <ArrowIcon /></a>
+              <a className="button button-dark" href="#work">Explore my focus <ArrowIcon /></a>
+              <a className="text-link" href="#about">A bit about me <ArrowIcon /></a>
             </div>
-            <div className="hero-footnote"><span>APPLICATION SECURITY</span><span>INFRASTRUCTURE SECURITY</span></div>
+            <div className="hero-footnote"><span><i /> PRACTICE WITH PERMISSION</span><span>ALWAYS LEARNING</span><span>SECURITY WITH PURPOSE</span></div>
           </div>
-          <div className="hero-art" aria-label="Abstract portrait illustration">
-            <div className="art-sun" />
-            <div className="art-orbit orbit-one" />
-            <div className="art-orbit orbit-two" />
-            <div className="art-plant plant-left"><i /><i /><i /><i /><i /></div>
-            <div className="art-plant plant-right"><i /><i /><i /><i /><i /></div>
-            <div className="art-vase"><span /></div>
-            <div className="art-book book-back" />
-            <div className="art-book book-front" />
-            <div className="art-stamp">LEARN<br />BUILD<br />SECURE<br /><span>✳</span></div>
-            <span className="art-caption">curiosity, with care</span>
-            <span className="art-star star-one">✳</span>
-            <span className="art-star star-two">✳</span>
-          </div>
+          <TerminalPanel />
         </section>
 
         <section className="work-section section-wrap" id="work">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">WHAT I’M INTERESTED IN</p>
-              <h2>Security focus areas<span className="heading-period">.</span></h2>
+              <p className="eyebrow">01 / WHAT I’M EXPLORING</p>
+              <h2>Areas of focus<span className="heading-period">.</span></h2>
             </div>
-            <a className="text-link desktop-link" href="#journal">Read my notes <ArrowIcon /></a>
+            <a className="text-link desktop-link" href="#journal">See my field notes <ArrowIcon /></a>
           </div>
           <div className="project-grid">
             {projects.map((project) => (
-              <a href="#contact" className="project-card" key={project.number}>
-                <div className={`project-visual ${project.color}`}><ProjectVisual visual={project.visual} /></div>
+              <article className="project-card" key={project.number}>
+                <div className={`project-visual ${project.color}`}>
+                  <span className="project-index">/{project.number}</span>
+                  <ProjectVisual visual={project.visual} />
+                  <span className="project-visual-label">FOCUS AREA</span>
+                </div>
                 <div className="project-meta"><span>{project.type}</span><span>{project.number}</span></div>
-                <div className="project-title"><div><h3>{project.name}</h3><p>{project.detail}</p></div><ArrowIcon diagonal /></div>
-              </a>
+                <div className="project-title"><div><h3>{project.name}</h3><p>{project.detail}</p></div></div>
+                <ul className="focus-topics">{project.topics.map((topic) => <li key={topic}>{topic}</li>)}</ul>
+              </article>
             ))}
           </div>
         </section>
 
         <section className="about-section" id="about">
           <div className="about-inner section-wrap">
-            <div className="about-mark"><span>✳</span><small>TOHEEB ADISA<br />CYBERSECURITY</small></div>
+            <div className="about-mark"><span>&lt;/&gt;</span><small>TOHEEB ADISA<br />SECURITY ENTHUSIAST</small></div>
             <div className="about-copy">
-              <p className="eyebrow">CYBERSECURITY · APPLICATION SECURITY · INFRASTRUCTURE SECURITY</p>
-              <h2>Curious by nature.<br /><em>Security-minded</em> by design.</h2>
-              <p>My name is Toheeb Adisa, and I’m passionate about cybersecurity. I’m particularly interested in application security and infrastructure security, and I’m committed to learning how to help make digital systems more secure.</p>
-              <a className="text-link" href="#journal">Read what I’m learning <ArrowIcon /></a>
+              <p className="eyebrow">02 / A LITTLE ABOUT ME</p>
+              <h2>Curiosity is my<br /><em>starting point.</em></h2>
+              <p>My name is Toheeb Adisa, and I’m passionate about cybersecurity. I’m particularly interested in application security and infrastructure security. I enjoy learning how systems work, thinking through how they can be protected, and sharing useful notes along the way.</p>
+              <a className="text-link" href="#journal">Read my learning notes <ArrowIcon /></a>
             </div>
             <div className="about-note"><span>✳</span><p>Good security<br />starts with<br />good questions.</p></div>
           </div>
@@ -389,8 +390,8 @@ function App() {
         <section className="journal-section section-wrap" id="journal">
           <div className="section-heading journal-heading">
             <div>
-              <p className="eyebrow">THINGS I’VE BEEN THINKING ABOUT</p>
-              <h2>From the journal<span className="heading-period">.</span></h2>
+              <p className="eyebrow">03 / NOTES FROM THE LEARNING PROCESS</p>
+              <h2>Field notes<span className="heading-period">.</span></h2>
             </div>
             <button type="button" className="button button-outline write-button" onClick={() => setModalOpen(true)}>
               <span className="plus-icon">+</span> Write a post
@@ -412,19 +413,19 @@ function App() {
         <section className="contact-section" id="contact">
           <div className="contact-inner section-wrap">
             <div>
-                <p className="eyebrow">CYBERSECURITY & CONTINUOUS LEARNING</p>
-                <h2>Building a more<br /><em>secure digital world.</em></h2>
+                <p className="eyebrow">HAVE A QUESTION OR WANT TO CONNECT?</p>
+                <h2>Security is a<br /><em>team sport.</em></h2>
             </div>
-              <a className="contact-link" href="#journal">Explore my journal <ArrowIcon diagonal /></a>
+                <a className="contact-link" href="#journal">Start with my notes <ArrowIcon diagonal /></a>
             <span className="contact-spark">✳</span>
           </div>
         </section>
       </main>
 
       <footer className="site-footer section-wrap">
-        <a className="wordmark footer-mark" href="#home">ta<span>.</span></a>
-        <span>© 2026 Toheeb Adisa</span>
-        <div><a href="#work">Security interests</a><a href="#journal">Journal</a></div>
+        <a className="wordmark footer-mark" href="#home"><span className="prompt-mark">&gt;</span> toheeb<span className="wordmark-dot">_</span></a>
+        <span>© 2026 Toheeb Adisa <span className="footer-note">· Built with curiosity and care.</span></span>
+        <div><a href="#work">Focus</a><a href="#journal">Field notes</a></div>
       </footer>
 
       {modalOpen && <PostModal onClose={() => setModalOpen(false)} onPublish={publishPost} />}
